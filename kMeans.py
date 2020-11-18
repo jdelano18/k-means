@@ -16,6 +16,7 @@ class kMeans():
         centroids = np.zeros((self.k, n_features))
 
         # use random.sample to avoid picking the same instance
+        random.seed(4)
         random_indices = random.sample(range(n_instances), self.k)
 
         for i, instance in enumerate(random_indices):
