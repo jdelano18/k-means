@@ -1,4 +1,4 @@
-from utils import parse_filename, preprocess_data, readArff, accuracy_score
+from utils import parse_filename, preprocess_data, readArff, inaccuracy_score
 from kMeans import kMeans
 
 if __name__ == '__main__':
@@ -11,5 +11,5 @@ if __name__ == '__main__':
     km = kMeans(k)
     km.train(X)
     preds = km.predict(X, y)
-    accuracy = accuracy_score(preds, y)
-    print(f"Percent Inaccuracy: {round((1-accuracy) * 100, 2)}%")
+    pct, num = inaccuracy_score(preds, y)
+    print(f"Percent Inaccuracy: {pct}% = {num}/{len(preds)}")

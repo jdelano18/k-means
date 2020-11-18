@@ -66,7 +66,8 @@ def euclidean_distance(x1, x2):
     distances = np.square(x1 - x2)
     return np.sqrt(sum(distances))
 
-def accuracy_score(y_true, y_pred):
-    """ Compare y_true to y_pred and return the accuracy """
-    accuracy = np.sum(y_true == y_pred, axis=0) / len(y_true)
-    return accuracy
+def inaccuracy_score(y_true, y_pred):
+    """ Compare y_true to y_pred and return the % inaccuracy and counts """
+    pct = round(100 * (np.sum(y_true != y_pred, axis=0) / len(y_true)), 2)
+    number = np.sum(y_true != y_pred, axis=0)
+    return pct, number
