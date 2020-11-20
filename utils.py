@@ -16,6 +16,9 @@ def parse_filename():
     return args
 
 def readArff(filename):
+    """
+    Same readArff function with an update for real values
+    """
     with open (filename, 'r') as f:
         # split lines, remove ones with comments
         lines = [line.lower() for line in f.read().split('\n') if not line.startswith('%')]
@@ -49,6 +52,9 @@ def readArff(filename):
 
 
 def preprocess_data(df):
+    """
+    Split into X and y and return values as numpy arrays
+    """
     ys = df.iloc[:,-1]
     ys = ys.values
 

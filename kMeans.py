@@ -3,7 +3,14 @@ import numpy as np
 from utils import euclidean_distance
 
 class kMeans():
-
+    """
+    Class for training and testing the k-means algorithm
+    initialized with value of k
+    Example usage:
+        km = kMeans(k=k)
+        km.train(X)
+        km.predict(X, y)
+    """
     def __init__(self, k, n_iter=100):
         self.k = k
         self.n_iter = n_iter
@@ -72,6 +79,12 @@ class kMeans():
         return new_centroids
 
     def train(self, X):
+        """
+        1. choose k random centroids
+        2. repeat 3 and 4 until centroids converge (don't move) or exceed n_iterations
+        3. find nearest centroid for each point and assign the point to that cluster
+        4. update the centroids by calculating the mean of all points assigned to that cluster
+        """
         centroids = self._initialize_centroids(X) # pick k random centroids to start
 
         for _ in range(self.n_iter):
@@ -119,6 +132,9 @@ class kMeans():
         return result
 
     def predict(self, X, y):
+        """
+        Call helper functions and map cluster numbers to class values
+        """
         preds = self._generate_prediction_groups(X)
         pred_map = self._generate_predition_map(X, y)
         results = [pred_map[p] for p in preds] # apply map to change cluster-index 0...k to actual class_vals
